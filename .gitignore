@@ -70,3 +70,6 @@ venv*
 
 # IDE
 .idea/
+
+# test DB
+*.sqlite3
