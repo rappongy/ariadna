@@ -1,33 +1,18 @@
+{% extends 'mainpage/base.html' %}
+
 {% load static %}
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Главная</title>
+
+{% block title %}Главная{% endblock %}
+
+{% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% static 'mainpage/index_stylsheet.css' %}">
+{% endblock %}
+
+{% block scripts %}
     <script type="text/javascript" src="https://vk.com/js/api/openapi.js?163"></script>
-</head>
-<body>
-<header class="header">
-    <div class="container">
-        <div class="header_inner">
-            <div class="header_logo">
-                <h1 class="logo">
-                    <img src="{% static 'mainpage/images/dsad.png' %}" alt="Ариадна" width="70px" height="70px">
-                </h1>
-            </div>
-            <nav class="nav">
-                <a class="nav_link" href="{% url 'mainpage:home-page' %}">Главная</a>
-                <a class="nav_link" href="{% url 'mainpage:about-page' %}">О клубе</a>
-                <a class="nav_link" href="#">Мероприятия</a>
-                <a class="nav_link" href="#">Материалы</a>
-                <a class="nav_link" href="#">Обратная связь</a>
-                <a class="nav_link" href="#">Вход</a>
-            </nav>
-        </div>
-    </div>
-</header>
-<div class="content">
+{% endblock %}
+
+{% block content %}
     <section class="section1">
         <div class="section1_text">
             <div class="text1">
@@ -41,8 +26,6 @@
             <img src="{% static 'mainpage/images/dsad.png' %}" align="right" width="259px" height="245px">
         </div>
     </section>
-
-
     <section class="section2">
         <div class="section2_img1">
             <div>
@@ -67,8 +50,6 @@
             </div>
         </div>
     </section>
-
-
     <section class="section3">
         <div class="section3_text">
             <div class="text3">
@@ -78,7 +59,6 @@
                     нам, вам ответят в кратчайшие сроки.</a>
             </div>
         </div>
-
         <div id="vk_groups">
             <script type="text/javascript">
                 VK.Widgets.Group("vk_groups", {mode: 2, width: "320", height: "320"}, 2237166);
@@ -91,56 +71,4 @@
             </script>
         </div>
     </section>
-</div>
-<section class="footer">
-    <div class="footerinner">
-        <div class="verh">
-
-            <div class="section3_text">
-                <h1 class="H1">Ариадна</h1>
-                <p>Клуб альпинизма и скалолазания</p>
-            </div>
-
-            <div class="links">
-                <h1 class="H1">Карта сайта</h1>
-                <ul class="sitemap">
-                    <li><a class="flink" href="{% url 'mainpage:home-page' %}">Главная</a></li>
-                    <li><a class="flink" href="{% url 'mainpage:about-page' %}">О клубе</a></li>
-                    <li><a class="flink" href="#">Мероприятия</a></li>
-                    <li><a class="flink" href="#">Материалы</a></li>
-                    <li><a class="flink" href="#">Обратная связь</a></li>
-                    <li><a class="flink" href="#">Вход</a></li>
-                </ul>
-            </div>
-
-            <div class="contacts">
-                <h1 class="H1">Контакты</h1>
-                <ul>
-                    <li>
-                        <a>Ariadna@tpu.ru</a>
-                    </li>
-                    <li>
-                        <a href="https://vk.com/ariadna_tpu"><img
-                                src="{% static 'mainpage/images/icons8-вконтакте-32.png' %}" alt="ВКОНТАКТЕ"></a>
-                        <a href="https://www.instagram.com/ariadna_tpu/"><img
-                                src="{% static 'mainpage/images/icons8-instagram-32.png' %}"
-                                alt="ИНСТАГРАМ"></a>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-
-        <div class="niz">
-            <hr>
-            <div class="Copyright">
-                <a>© 2020. All Rights Reserved.</a>
-            </div>
-        </div>
-    </div>
-
-</section>
-
-</body>
-
-</html>
+{% endblock %}
