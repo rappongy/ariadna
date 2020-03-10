@@ -72,4 +72,4 @@ venv*
 .idea/
 
 # test DB
-*.sqlite3
+/db.sqlite3
