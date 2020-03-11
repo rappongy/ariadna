@@ -15,75 +15,34 @@
     <section class="section1">
         <div class="section1_img">
             <div class="slider">
-                <div class="item">
-                    <img src="{% static 'mainpage/images/about/1.png' %}" alt="">
-                    <div class="slidetext">Выезд на тутальские скалы (2019г.)</div>
-                </div>
-                <div class="item">
-                    <img src="{% static 'mainpage/images/about/2.png' %}" alt="">
-                    <div class="slidetext">Олег пытается развязать узел (2019г.)</div>
-                </div>
-                <div class="item">
-                    <img src="{% static 'mainpage/images/about/3.png' %}" alt="">
-                    <div class="slidetext">Новички (2019г.)</div>
-                </div>
-                <div class="item">
-                    <img src="{% static 'mainpage/images/about/4.png' %}" alt="">
-                    <div class="slidetext">Тактовские спасы (2018г.)</div>
-                </div>
-                <div class="item">
-                    <img src="{% static 'mainpage/images/about/5.png' %}" alt="">
-                    <div class="slidetext">Этап бивуак на спасах (2018г.)</div>
-                </div>
-                <div class="item">
-                    <img src="{% static 'mainpage/images/about/6.png' %}" alt="">
-                    <div class="slidetext">Хэллоуин (2018г.)</div>
-                </div>
-                <div class="item">
-                    <img src="{% static 'mainpage/images/about/7.png' %}" alt="">
-                    <div class="slidetext">Тумба-юмба (2018г.)</div>
-                </div>
-                <div class="item">
-                    <img src="{% static 'mainpage/images/about/8.png' %}" alt="">
-                    <div class="slidetext">Тренировка на буревестнике (2017г.)</div>
-                </div>
-                <div class="item">
-                    <img src="{% static 'mainpage/images/about/9.png' %}" alt="">
-                    <div class="slidetext">Вязка жестких носилок (2017г.)</div>
-                </div>
-                <div class="item">
-                    <img src="{% static 'mainpage/images/about/10.png' %}" alt="">
-                    <div class="slidetext">"Сосулька" (2013г.)</div>
-                </div>
-
+                {% for image in slider_images %}
+                    <div class="item">
+                        <img src="{% static image.image %}" alt="">
+                        <div class="slidetext">{{ image.caption }} ({{ image.year }} г.)</div>
+                    </div>
+                {% endfor %}
                 <a class="prev" onclick="minusSlide()">&#10094;</a>
                 <a class="next" onclick="plusSlide()">&#10095;</a>
             </div>
             <div class="slider-dots">
-                <span class="slider-dots_item" onclick="currentSlide(1)"></span>
-                <span class="slider-dots_item" onclick="currentSlide(2)"></span>
-                <span class="slider-dots_item" onclick="currentSlide(3)"></span>
-                <span class="slider-dots_item" onclick="currentSlide(4)"></span>
-                <span class="slider-dots_item" onclick="currentSlide(5)"></span>
-                <span class="slider-dots_item" onclick="currentSlide(6)"></span>
-                <span class="slider-dots_item" onclick="currentSlide(7)"></span>
-                <span class="slider-dots_item" onclick="currentSlide(8)"></span>
-                <span class="slider-dots_item" onclick="currentSlide(9)"></span>
-                <span class="slider-dots_item" onclick="currentSlide(10)"></span>
+                {% for image in slider_images %}
+                    <span class="slider-dots_item"
+                          onclick="currentSlide({{ forloop.counter }})"></span>
+                {% endfor %}
             </div>
         </div>
-
         <div class="section1_text">
             <div class="text1">
                 <h1>История клуба</h1>
-                <p>Спортивный клуб Ариадна был создан 10 октября 1973 года. Начальный состав клуба ограничивался
+                <p>
+                    Спортивный клуб Ариадна был создан 10 октября 1973 года. Начальный состав клуба ограничивался
                     небольшой группой спелеологов, что и сформировало первое направление развития. Почти сразу к
                     спелеологии присоединилось родственное скалолазание. Позже - альпинизм - самый суровый и
                     экстремальный вид спорта. За годы существования клуба мы обзавелись своими традициями,
-                    отличительными чертами и методами работы с новичками</p>
+                    отличительными чертами и методами работы с новичками.
+                </p>
             </div>
         </div>
-
     </section>
     <section class="section2">
         <div class="S2text">
@@ -96,7 +55,6 @@
             <div class="S2img"><img src="{% static 'mainpage/images/about/АЛЬПИНИЗМ.png' %}"></div>
             <div class="S2img"><img src="{% static 'mainpage/images/about/СКАЛОЛАЗАНИЕ.png' %}"></div>
         </div>
-
         <div class="S2content2">
             <div class="S2img"><img src="{% static 'mainpage/images/about/БОУЛДЕРИНГ.png' %}"></div>
             <div class="S2img"><img src="{% static 'mainpage/images/about/СПАСАТЕЛЬНЫЕ РАБОТЫ.png' %}"></div>
@@ -108,57 +66,26 @@
             <h2>Представители клуба</h2>
         </div>
         <div class="MainMember">
-            <div><img class="S2img" src="{% static 'mainpage/images/about/Аля.png' %}"></div>
-            <p class="MemberName">Александра Диденко</p>
-            <p class="MemberPosition">президент</p>
+            <div>
+                <img class="S2img" src="{% static members_president.image %}">
+            </div>
+            <p class="MemberName">{{ members_president.name }}</p>
+            <p class="MemberPosition">{{ members_president.caption }}</p>
         </div>
         <div class="otherMembers">
-            <div class="member1">
-                <div><img class="S2img" src="{% static 'mainpage/images/about/Настя.png' %}"></div>
-                <p class="MemberName">Анастасия Черноштан</p>
-                <p class="MemberPosition">казначей</p>
-            </div>
-            <div class="member2">
-                <div><img class="S2img" src="{% static 'mainpage/images/about/Климов.png' %}"></div>
-                <p class="MemberName">Алексей Климов</p>
-                <p class="MemberPosition">главный по снаряге</p>
-            </div>
-            <div class="member3">
-                <div><img class="S2img" src="{% static 'mainpage/images/about/Таран.png' %}"></div>
-                <p class="MemberName">Алексей Таран</p>
-                <p class="MemberPosition">тренер</p>
-            </div>
-            <div class="member4">
-                <div><img class="S2img" src="{% static 'mainpage/images/about/Эмиль.png' %}"></div>
-                <p class="MemberName">Эмиль Мирмаметов</p>
-                <p class="MemberPosition">администратор сайта, группы</p>
-            </div>
-        </div>
-    </section>
-    <section class="section3">
-        <div class="section3_text">
-            <div class="text3">
-                <h1>Как нас найти?</h1>
-                <a>Наш клуб находится по адресу ул.Вершинина
-                    46. ( Общежитие ТПУ №16). Наше сообщество ВК закрыто в целях защиты от спама, но вы можете написать
-                    нам, вам ответят в кратчайшие сроки.</a>
-            </div>
-        </div>
-
-        <div id="vk_groups">
-            <script type="text/javascript">
-                VK.Widgets.Group("vk_groups", {mode: 2, width: "320", height: "320"}, 2237166);
-            </script>
-        </div>
-
-        <div class="mapwidget">
-            <script type="text/javascript" charset="utf-8" async
-                    src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0f440c020c96c5b349ee95faa9116c36cacf7860d48a290f78108d07ef817c9e&amp;width=320&amp;height=320&amp;lang=ru_RU&amp;scroll=true">
-            </script>
+            {% for member in members_other %}
+                <div class="member1">
+                    <div>
+                        <img class="S2img" src="{% static member.image %}">
+                    </div>
+                    <p class="MemberName">{{ member.name }}</p>
+                    <p class="MemberPosition">{{ member.caption }}</p>
+                </div>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}
 
-{% block footer_scripts %}
+{% block extra_scripts %}
     <script src="{% static 'mainpage/js/js.js' %}"></script>
 {% endblock %}
