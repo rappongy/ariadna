@@ -3,8 +3,34 @@ version: '3'
 services:
   django:
     build: ./app
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn ariadna.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - ./app:/code
+      - static:/code/static
+    expose:
+      - 8000
+    env_file:
+      - .env.dev
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12.2-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env.db
     ports:
-      - 8000:8000
+      - 5432:5432
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - static:/code/static
+    ports:
+      - 8080:80
+    depends_on:
+      - django
+
+volumes:
+  postgres_data:
+  static:
