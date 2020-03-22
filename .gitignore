@@ -72,4 +72,7 @@ venv*
 .idea/
 
 # test DB
-/app/db.sqlite3
+!*.sqlite3
+
+# env vars
+*/.env*

@@ -31,3 +31,16 @@
 ### Обратная связь
 - форма для общения с незарегистрированными
 
+
+---
+
+## Run locally
+```shell script
+$ cd <PROJECT FOLDER>
+
+$ django-admin runserver --settings=app.config.settings.local --pythonpath=<PROJECT FOLDER/app>
+```
+
+```shell script
+export PYTHONPATH=${PYTHONPATH}:${PWD}
+```

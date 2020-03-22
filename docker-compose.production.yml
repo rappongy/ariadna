@@ -1,26 +1,32 @@
 version: '3'
 
+volumes:
+  postgres_data:
+  static:
+
 services:
   django:
     build: ./app
-    command: gunicorn ariadna.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static:/code/static
     expose:
       - 8000
     env_file:
-      - .env.dev
+      - app/.env.production
     depends_on:
       - db
+    restart: unless-stopped
 
   db:
     image: postgres:12.2-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - .env.db
     ports:
       - 5432:5432
+    env_file:
+      - postgres/.env.db
+    restart: unless-stopped
 
   nginx:
     build: ./nginx
@@ -30,7 +36,4 @@ services:
       - 8080:80
     depends_on:
       - django
-
-volumes:
-  postgres_data:
-  static:
+    restart: unless-stopped

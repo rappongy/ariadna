@@ -1,15 +1,25 @@
-"""Django settings for ariadna project."""
+"""Django settings for config project."""
 
 import os
+from pathlib import Path
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from django.core.exceptions import ImproperlyConfigured
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'FOOBAR')
 
-DEBUG = os.environ.get('DEBUG', False)
+def env_var(var_name):
+    """Get the environment variable or return exception."""
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        raise ImproperlyConfigured(f'Set the {var_name} environment variable')
 
-ALLOWED_HOSTS = []
+
+DEBUG = env_var('DJANGO_DEBUG')
+
+SECRET_KEY = 'FOOBAR'
+
+# Build paths inside the project like this: BASE_DIR / '...'
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Application definition
 
@@ -19,7 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mainpage.apps.MainpageConfig',
+    'ariadna.mainpage.apps.MainpageConfig',
 ]
 
 MIDDLEWARE = [
@@ -32,7 +42,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'ariadna.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -50,18 +60,18 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ariadna.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.sqlite3'),
-        'NAME': os.environ.get('SQL_DATABASE', os.path.join(BASE_DIR, 'db.sqlite3')),
+        'ENGINE': 'django.db.backends.postgresql',
         'HOST': os.environ.get('SQL_HOST', 'localhost'),
         'PORT': os.environ.get('SQL_PORT', 5432),
-        'USER': os.environ.get('SQL_USER', 'user'),
+        'NAME': os.environ.get('SQL_DATABASE', 'app'),
+        'USER': os.environ.get('SQL_USER', 'postgres'),
         'PASSWORD': os.environ.get('SQL_PASSWORD', 'password'),
     }
 }
@@ -102,8 +112,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+MEDIA_ROOT = BASE_DIR / 'media'
+
+MEDIA_URL = '/media/'
