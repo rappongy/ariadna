@@ -19,7 +19,7 @@ DEBUG = env_var('DJANGO_DEBUG')
 SECRET_KEY = 'FOOBAR'
 
 # Build paths inside the project like this: BASE_DIR / '...'
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Application definition
 

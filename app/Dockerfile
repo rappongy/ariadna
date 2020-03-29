@@ -5,8 +5,6 @@ WORKDIR /code
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
-RUN mkdir /code/static
-
 # install psycopg2
 RUN apk update \
     && apk add --virtual build-deps gcc python3-dev musl-dev \
