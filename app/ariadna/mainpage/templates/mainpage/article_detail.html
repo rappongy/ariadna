@@ -1,0 +1,14 @@
+{% extends 'mainpage/base_mainpage.html' %}
+
+{% load static %}
+
+{% block title %}Материал - {{ object.title }}{% endblock title %}
+
+{% block content %}
+    <h1>{{ object.title }}</h1>
+    <div>author {{ object.author }}</div>
+    <div>created {{ object.created|date }}</div>
+    <div>modified {{ object.modified|date }}</div>
+    <div>{{ object.description }}</div>
+    <div>{{ object.content }}</div>
+{% endblock content %}

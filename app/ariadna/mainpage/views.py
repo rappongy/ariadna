@@ -1,7 +1,9 @@
 from collections import namedtuple
 
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
+from .models import Article
 
 def index_page(request):
     return render(request, 'mainpage/index.html')
@@ -38,3 +40,15 @@ def about_page(request):
         'members_president': members_president,
         'members_other': members_other,
     })
+
+
+# def knowledge_page(request):
+#     return render(request, 'mainpage/knowledge.html')
+
+
+class ArticleListView(ListView):
+    model = Article
+
+
+class ArticleDetailView(DetailView):
+    model = Article
