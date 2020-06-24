@@ -1,12 +1,12 @@
-{% extends 'mainpage/base.html' %}
+{% extends 'mainpage/base_mainpage.html' %}
 
 {% load static %}
 
-{% block title %}Главная{% endblock %}
+{% block title %}Главная{% endblock title %}
 
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% static 'mainpage/index_stylsheet.css' %}">
-{% endblock %}
+{% endblock stylesheets %}
 
 {% block content %}
     <section class="section1">
@@ -46,4 +46,5 @@
             </div>
         </div>
     </section>
-{% endblock %}
+    {% include "mainpage/_find_us.html" %}
+{% endblock content %}

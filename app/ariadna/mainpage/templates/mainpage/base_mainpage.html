@@ -3,12 +3,12 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}Главная{% endblock %}</title>
+    <title>{% block title %}Главная{% endblock title %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" type="text/css" href="{% static 'mainpage/index_stylsheet.css' %}">
-    {% endblock %}
+    {% endblock stylesheets %}
 </head>
-<body {% block body_attributes %}{% endblock %}>
+<body {% block body_attributes %}{% endblock body_attributes %}>
 <header class="header">
     <div class="container">
         <div class="header_inner">
@@ -20,34 +20,16 @@
             <nav class="nav">
                 <a class="nav_link" href="{% url 'mainpage:home-page' %}">Главная</a>
                 <a class="nav_link" href="{% url 'mainpage:about-page' %}">О клубе</a>
-                {#                <a class="nav_link" href="#">Мероприятия</a>#}
-                {#                <a class="nav_link" href="#">Материалы</a>#}
-                {#                <a class="nav_link" href="#">Обратная связь</a>#}
-                {#                <a class="nav_link" href="#">Вход</a>#}
+                {# <a class="nav_link" href="#">Мероприятия</a>#}
+                <a class="nav_link" href="{% url 'mainpage:knowledge-page' %}">Материалы</a>
+                {# <a class="nav_link" href="#">Обратная связь</a>#}
+                {# <a class="nav_link" href="#">Вход</a>#}
             </nav>
         </div>
     </div>
 </header>
 <div class="content">
-    {% block content %}{% endblock %}
-    <section class="section3">
-        <div class="section3_text">
-            <div class="text3">
-                <h1>Как нас найти?</h1>
-                <p>
-                    Наш клуб находится по адресу ул. Вершинина, 46. (Общежитие ТПУ №16).
-                    Наше сообщество ВК закрыто в целях защиты от спама, но вы можете написать нам,
-                    вам ответят в кратчайшие сроки.
-                </p>
-            </div>
-        </div>
-        <div id="vk_groups"></div>
-        <div class="mapwidget">
-            <script type="text/javascript" charset="utf-8" async
-                    src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0f440c020c96c5b349ee95faa9116c36cacf7860d48a290f78108d07ef817c9e&amp;width=320&amp;height=320&amp;lang=ru_RU&amp;scroll=true"
-            ></script>
-        </div>
-    </section>
+    {% block content %}{% endblock content %}
 </div>
 <section class="footer">
     <div class="footerinner">
@@ -61,10 +43,10 @@
                 <ul class="sitemap">
                     <li><a class="flink" href="{% url 'mainpage:home-page' %}">Главная</a></li>
                     <li><a class="flink" href="{% url 'mainpage:about-page' %}">О клубе</a></li>
-                    {#                    <li><a class="flink" href="#">Мероприятия</a></li>#}
-                    {#                    <li><a class="flink" href="#">Материалы</a></li>#}
-                    {#                    <li><a class="flink" href="#">Обратная связь</a></li>#}
-                    {#                    <li><a class="flink" href="#">Вход</a></li>#}
+                    {# <li><a class="flink" href="#">Мероприятия</a></li>#}
+                    <li><a class="flink" href="{% url 'mainpage:knowledge-page' %}">Материалы</a></li>
+                    {# <li><a class="flink" href="#">Обратная связь</a></li>#}
+                    {# <li><a class="flink" href="#">Вход</a></li>#}
                 </ul>
             </div>
             <div class="contacts">
@@ -97,7 +79,7 @@
     <script type="text/javascript">
         VK.Widgets.Group("vk_groups", {mode: 2, width: "320", height: "320"}, 2237166);
     </script>
-    {% block extra_scripts %}{% endblock %}
-{% endblock %}
+    {% block extra_scripts %}{% endblock extra_scripts %}
+{% endblock scripts %}
 </body>
 </html>
